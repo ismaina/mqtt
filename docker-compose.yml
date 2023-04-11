@@ -1,0 +1,27 @@
+version: "3.3"
+
+services:
+  rabbitmq:
+    image: rabbitmq:3-management
+    env_file:
+      - ./.envs/.production/.django
+    ports:
+      - "15672:15672"
+      - "15692:15692"
+      - "5672:5672"
+    networks:
+      - main-app-external-network
+    volumes:
+      - rabbitmq_data:/var/lib/rabbitmq
+  redis:
+    image: redis:7-alpine
+    ports:
+      - "6379:6379"
+    networks:
+      - main-app-external-network
+
+networks:
+  main-app-external-network:
+    external: true
+volumes:
+  rabbitmq_data:
