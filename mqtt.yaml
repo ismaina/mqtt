@@ -71,7 +71,7 @@ spec:
         kompose.version: 1.28.0 (c4137012e)
       creationTimestamp: null
       labels:
-        io.kompose.network/main-app-external-network: "true"
+        io.kompose.network/mqtt-default: "true"
         io.kompose.service: rabbitmq
     spec:
       containers:
@@ -160,16 +160,16 @@ apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
   creationTimestamp: null
-  name: main-app-external-network
+  name: mqtt-default
 spec:
   ingress:
     - from:
         - podSelector:
             matchLabels:
-              io.kompose.network/main-app-external-network: "true"
+              io.kompose.network/mqtt-default: "true"
   podSelector:
     matchLabels:
-      io.kompose.network/main-app-external-network: "true"
+      io.kompose.network/mqtt-default: "true"
 
 ---
 apiVersion: apps/v1
@@ -195,7 +195,7 @@ spec:
         kompose.version: 1.28.0 (c4137012e)
       creationTimestamp: null
       labels:
-        io.kompose.network/main-app-external-network: "true"
+        io.kompose.network/mqtt-default: "true"
         io.kompose.service: redis
     spec:
       containers:
