@@ -3,17 +3,31 @@ version: "3.3"
 services:
   rabbitmq:
     image: rabbitmq:3-management
+    container_name: rabbitmq
     env_file:
       - ./.envs/.production/.django
     ports:
       - "15672:15672"
       - "15692:15692"
       - "5672:5672"
+    networks:
+      - proxy
     volumes:
       - rabbitmq_data:/var/lib/rabbitmq
+    restart: always
   redis:
-    image: redis:7-alpine
+    image: redis/redis-stack:latest
+    container_name: redis
+    command: redis-server --requirepass redis_password
     ports:
       - "6379:6379"
+      - "8002:8001"
+    networks:
+      - proxy
+    restart: always
 volumes:
   rabbitmq_data:
+
+networks:
+  proxy:
+    external: true
