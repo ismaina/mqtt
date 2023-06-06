@@ -18,7 +18,7 @@ services:
   redis:
     image: redis/redis-stack:latest
     container_name: redis
-    command: redis-server --requirepass redis_password
+    # command: redis-server --requirepass redis_password
     ports:
       - "6379:6379"
       - "8002:8001"
