@@ -25,6 +25,19 @@ services:
     networks:
       - proxy
     restart: always
+  nginxproxy:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: nginxproxy
+    restart: always
+    ports:
+      - '80:80'
+      - '81:81'
+      - '443:443'
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+    networks:
+      - proxy
 volumes:
   rabbitmq_data:
 
