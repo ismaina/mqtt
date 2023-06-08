@@ -36,10 +36,14 @@ services:
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
+      - static_mlb_v:/app_local/staticfiles
+      - media_mlb_v:/app_local/mediafiles
     networks:
       - proxy
 volumes:
   rabbitmq_data:
+  static_mlb_v:
+  media_mlb_v:
 
 networks:
   proxy:
