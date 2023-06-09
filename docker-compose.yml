@@ -43,7 +43,9 @@ services:
 volumes:
   rabbitmq_data:
   static_mlb_v:
+    external: true
   media_mlb_v:
+    external: true
 
 networks:
   proxy:
